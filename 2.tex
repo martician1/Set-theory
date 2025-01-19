@@ -1,0 +1,131 @@
+\begin{problem}
+Нека $I$ и $J$ са непразни множества, $\{I_j\}_{j \in J}$ е $J$-индексирана фамилия от непразни множества,
+като $I = \union_{j \in J} I_j$. Нека
+\[
+K = \{L\ |\ L \in \pow(I) \land (\forall j \in J) (L \cap I_j \neq \varnothing)\}
+\]
+
+Да се докаже, че за всяка $I$-индексирана фамилия от множества $\{A_i\}_{i \in I}$ са в сила равенствата:
+\[
+\union_{j \in J} \intersection_{i \in I_j} A_i = \intersection_{L \in K} \union_{i \in L} A_i,
+\]
+\[
+\intersection_{j \in J} \union_{i \in I_j} A_i = \union_{L \in K} \intersection_{i \in L} A_i
+\]
+
+\textbf{Решение:}
+\smallbreak
+
+\quad
+Първо ще докажем, че:
+\[
+\union_{j \in J} \intersection_{i \in I_j} A_i \subseteq \intersection_{L \in K} \union_{i \in L} A_i
+\]
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+Нека \(\displaystyle x \in \union_{j \in J} \intersection_{i \in I_j} A_i\) и нека
+вземем $k \in J$, такова че $\displaystyle x \in \intersection_{i \in I_k} A_i$. Тогава:
+\begin{equation}
+\forall i \in I_k\ [x \in A_i]
+\end{equation}
+
+
+Нека $L$ е произволен елемент на $K$ и нека $y \in L \cap I_k$.
+От (1) $x \in A_y$, освен това знаем, че $\displaystyle y \in L \Rightarrow x \in \union_{i \in L} A_i$.
+
+Щом $\displaystyle x \in \union_{i \in L} A_i$ за произволно $L \in K$,
+то $\displaystyle x \in \intersection_{L \in K} \union_{i \in L} A_i$.
+
+\qed
+\end{tcolorbox}
+
+\bigbreak
+В обратната посока, ще докажем, че:
+\[
+\union_{j \in J} \intersection_{i \in I_j} A_i \supseteq \intersection_{L \in K} \union_{i \in L} A_i
+\]
+\begin{tcolorbox}[mybox={Доказателство:}]
+Нека \(\displaystyle x \in \intersection_{L \in K} \union_{i \in L} A_i\).
+Да допуснем, че
+$\displaystyle x \notin \union_{j \in J} \intersection_{i \in I_j} A_i \iff
+\forall j \in J\ [x \notin \intersection_{i \in I_j} A_i] \iff
+\forall j \in J\ \exists k \in I_j \ [x \notin A_k]$.
+
+Нека разгледаме множество $L$ от такива индекси $k$:
+\[
+L = \{k \ |\ k \in I \land x \notin A_k\}
+\]
+
+\textbf{Наблюдение 1:} $\displaystyle x \notin \union_{i \in L} A_i$
+
+\textbf{Наблюдение 2:} $L \in K$.
+Наистина, $L \in \pow(I)$ по дефиниция и освен това за произволно $j \in J$ e изпълнено, че $L \cap I_j \neq \varnothing$,
+понеже по допускане $I_j$ съдържа елемент $k$, такъв че $x \notin A_k$.
+
+\bigbreak
+Щом $L \in K$ и $\displaystyle x \notin \union_{i \in L} A_i$, то
+$\displaystyle x \notin \intersection_{L \in K} \union_{i \in L} A_i$.
+Но това противоречи на избора на $x$, следователно допускането ни е грешно и
+$\displaystyle \union_{j \in J} \intersection_{i \in I_j} A_i \supseteq \intersection_{L \in K} \union_{i \in L} A_i$.
+
+\qed
+\end{tcolorbox}
+
+\bigbreak
+Нека сега разгледаме второто равенство:
+\[
+\intersection_{j \in J} \union_{i \in I_j} A_i = \union_{L \in K} \intersection_{i \in L} A_i,
+\]
+
+Първо ще докажем, че:
+\[
+\intersection_{j \in J} \union_{i \in I_j} A_i \subseteq \union_{L \in K} \intersection_{i \in L} A_i
+\]
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+Нека
+$\displaystyle x \in \intersection_{j \in J} \union_{i \in I_j} A_i$.
+Тогава:
+\begin{equation}
+\forall j \in J \ [x \in \union_{i \in I_j} A_i] \iff
+\forall j \in J \ \exists k \in I_j\ [x \in A_k]
+\end{equation}
+
+Нека разгледаме множество $L$ от такива индекси $k$:
+\[
+L = \{k \ |\ k \in I \land x \in A_k\}
+\]
+
+\textbf{Наблюдение 1:} $\displaystyle x \in \intersection_{i \in L} A_i$
+
+\textbf{Наблюдение 2:} $L \in K$.
+Наистина, $L \in \pow(I)$ по дефиниция и освен това, като следствие от (2),
+за произволно $j \in J$ e изпълнено, че $L \cap I_j \neq \varnothing$.
+
+\bigbreak
+Щом $L \in K$ и $\displaystyle x \in \intersection_{i \in L} A_i$, то
+$\displaystyle x \in \union_{L \in K} \intersection_{i \in L} A_i$.
+
+\qed
+\end{tcolorbox}
+
+\bigbreak
+В обратната посока, ще докажем, че:
+\[
+\intersection_{j \in J} \union_{i \in I_j} A_i \supseteq \union_{L \in K} \intersection_{i \in L} A_i
+\]
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+Нека $\displaystyle x \in \union_{L \in K} \intersection_{i \in L} A_i$ и нека вземем $L \in K$,
+такова че $\displaystyle x \in \intersection_{i \in L} A_i$.
+Нека $k$ е произволен елемент на $J$.
+Твърдим, че $\displaystyle x \in \union_{i \in I_k} A_i$.
+Като свидетел за това можем да вземем множеството $A_y$, където $y \in I_k \cap L$.
+
+Щом $\displaystyle x \in \union_{i \in I_k} A_i$ за произволно $k \in J$,
+то $\displaystyle x \in \intersection_{j \in J} \union_{i \in L} A_i$.
+
+\qed
+\end{tcolorbox}
+
+\end{problem}

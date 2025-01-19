@@ -1,0 +1,188 @@
+% !TEX root = hw.tex
+
+\begin{problem}
+Функция $f$ се нарича \textit{двуместна}, ако Rel(Dom($f$)). Както обикновено,
+$f(x, y)$ означава $f (\pair{x, y})$. Множество $M$ се нарича
+\textit{затворено относно двуместна функция} $f$,
+ако всеки път, когато $x_1, x_2 \in M$, следва $f(x_1, x_2) \in M$.
+Нека $W$ е непразно множество и $f: \pow(\union W) \times \pow(\union W) \to \pow(\union W)$.
+\begin{enumerate}
+\item Да се докаже, че съществува единствено множество $V$ със свойствата:
+$W \subseteq V$, $V$ е затворено относно $f$ и всеки път, когато $W \subseteq V'$
+и $V'$ е затворено относно $f$, следва $V \subseteq V'$. Това множество $V$ ще
+наричаме \textit{породено} от $W$ и $f$; означаваме го с $W_f$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека разгледаме множеството $A \subseteq \pow(\pow(\union W))$ от затворени относно $f$ надмножества на $W$:
+\[
+	A = \{x\ |\ x \in \pow(\pow(\union W)) \land W \subseteq x \land \forall y\, \forall z\, [ y \in x \land z \in x \to f(y, z) \in x ] \}
+\]
+\quad
+Твърдим, че $\intersection A$ е точно множеството $V$ от условието.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека първо забележим, че $A$ не е празно, понеже $\pow(\union W) \in A$. Оттук следва, че и $\intersection A$ не е празно.
+
+\quad
+Щe докажем, че $W \subseteq \intersection A$. Нека $x \in W$.
+От това, че $W$ е подмножество на всеки елемент на $A$, можем да заключим, че $\forall y\, [y \in A \to x \in y] \iff x \in \intersection A$.
+
+\quad
+Сега ще докажем, че $\intersection A$ е затворено относно $f$.
+Нека допуснем, че това не е така, тоест съществуват $x_1, x_2 \in \intersection A$,
+за които $f(x_1, x_2) \notin \intersection A$.
+Нека $x_3 = f(x_1, x_2)$ и нека $B$ е произволно множество, такова че $B \in A \land x_3 \notin B$.
+Тъй като $\intersection A \subseteq B$, то $x_1, x_2 \in B$, откъдето $B$ няма да е затровено, понеже
+$f(x_1, x_2) = x_3 \notin B$. Щом $B$ не е затворено то със сигурност не принадлежи на $A$.
+Така получихме, че $B$ едновременно принадлежи и не принадлежи на $A$, което е противоречие
+$\Rightarrow$ $\intersection A$ е затворено относно $f$.
+
+\quad
+Накрая остава да съобразим, че
+тъй като всяко затворено относно $f$ надмножество $V'$ на $W$ е надмножество на $\intersection A$,
+$V$ е минимално по включване.
+
+\qed
+\end{tcolorbox}
+
+\item
+Да се докаже, че $X \in W_{\cup}$ точно тогава, когато съществува такова крайно и непразно $W_0 \subseteq W$, че $X = \union{W_0}$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+$(\Rightarrow)$
+Нека $C$ е множеството от тези $X$, за които горното е изпълнено:
+\[
+	C = \{x\ |\ x \in W_{\cup} \land \text{съществува крайно и непразно множество $W_0 \subseteq W$, такова, че }\, x = \union W_0\}
+\]
+\quad
+Лесно се забелязва, че $W$ е подмножество на $C$, тъй като $\forall x \in W : x = \union \{x\}$.
+
+\quad
+Твърдим, че освен това $C$ е затворено относно $\cup$.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Да допуснем, че $C$ не е затворено.
+Нека $x_1, x_2 \in C$ и $x_1 \cup x_2 \notin C$.
+Нека $x_3 = x_1 \cup x_2$. Лесно се забелязва, че щом $W_{\cup}$ е затворено,
+то $x_3 \in W_{\cup}$.
+От друга страна $x_1, x_2 \in C \Rightarrow x_1 = \union W_1 \land x_2 = \union W_2$
+за някакви крайни непразни подмножеста $W_1, W_2$ на $W$.
+
+\quad
+Нека сега разгледаме множеството $W_0 = W_1 \cup W_2$.
+Ясно е, че то е крайно и непразно подмножество на $W$.
+Остава да забележим, че $x_3$ е точно множеството $\union W_0$, тоест $x_3 \in C$, което е в противоречие с изведеното $x_3 \notin C$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+И така, получихме, че $C$ е затворено относно $\cup$ подмножество на $W_{\cup}$.
+Тъй като $W_{\cup}$ е породено от $W$ и $\cup$ и $W \subseteq C$, последното влече, че $C = W_{\cup}$.
+
+\qed
+
+% $(\Rightarrow)$
+% Нека $C$ е множеството от тези $X$, за които горното не е изпълнено:
+% \[
+% 	C = \{x\ |\ x \in W_{\cup} \land \text{за всяко крайно и непразно множество $W_0 \subseteq W$},\, x \ne \union W_0\}
+% \]
+% \quad
+% Твърдим, че $W_{\cup} \setminus C$ е затворено относно $\cup$.
+%
+% \bigbreak
+% \textbf{Доказателство:}
+%
+% \quad
+% Да допуснем, че $W_{\cup} \setminus C$ не е затворено.
+% Нека $x_1, x_2 \in W_{\cup} \setminus C$ и $x_1 \cup x_2 \notin W_{\cup} \setminus C$.
+% Нека $x_3 = x_1 \cup x_2$. Лесно се забелязва, че щом $W_{\cup}$ е затворено,
+% то $x_3 \in W_{\cup}$, и щом $x_3 \notin W_{\cup} \setminus C$, то $x_3 \in C$.
+% От друга страна $x_1, x_2 \in W_{\cup} \setminus C \Rightarrow x_1 = \union W_1 \land x_2 = \union W_2$
+% за някакви крайни непразни подмножеста $W_1, W_2$ на $W$.
+%
+% \quad
+% Нека сега разгледаме множеството $W_0 = W_1 \cup W_2$.
+% Ясно е, че то е крайно и непразно подмножество на $W$.
+% Остава да забележим, че $x_3$ е точно множеството $\union W_0$, тоест $x_3 \notin C$, което е в противоречие с изведеното $x_3 \in C$.
+% \qed
+%
+% \quad
+% И така, получихме, че $W_{\cup} \setminus C$ е затворено подмножество на $W_{\cup}$.
+% Тъй като $W_{\cup}$ е породено от $W$ и $\cup$, последното влече, че $W_{\cup} = W_{\cup} \setminus C \Rightarrow C = \varnothing$.
+% \qed
+
+\bigbreak
+\quad
+$(\Leftarrow)$ Ще докажем обратната посока, с индукция по мощността на $W_0$:
+
+\bigbreak
+\textbf{База:} $\size{W_0} = 1$
+
+Нека $w$ е такова, че $W_0 = \{w\}$.
+Тогава $X = \union W_0 = w$, откъдето $X \in W_{\cup}$, понеже $w \in W_{0} \subseteq W \subseteq W_{\cup}$.
+
+\textbf{Индукционна стъпка:} $\size{W_0} = k+1$
+
+Нека $W'$ е произволно непразно строго подмножество на $W_0$.
+По индукционно предположение, тъй като $\size{W'} < k+1$ и $\size{W_0 \setminus W'} < k+1$, то
+$\union W' \in W_{\cup}$ и
+$\union (W_0 \setminus W') \in W_{\cup}$
+откъдето от затвореността на $W_{\cup}$ следва, че:
+\[
+\union W' \cup \union (W_0 \setminus W') \in W_{\cup} \iff \union W_0 \in W_{\cup} \iff X \in W_{\cup}.
+\]
+
+\qed
+
+
+\item
+Да се докаже, че $W_{\cup \cap} = W_{\cap \cup}$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека първо забележим, че $X \in W_{\cap}$ точно тогава, когато съществува такова крайно и непразно $W_0 \subseteq W$, такова че $X = \intersection{W_0}$.
+Доказателството на това твърдение е аналогично на доказателството в предната подточка. В сила е следното:
+\begin{alignat*}{2}
+&X \in W_{\cup \cap} & \iff & X = (x_1 \cap x_2 \cap \dots \cap x_k) \text{ за } x_1, x_2, \dots x_k \in W_{\cup} \land k \neq 0. \\
+&X \in W_{\cup}      & \iff & X = (y_1 \cup y_2 \cup \dots \cup y_l) \text{ за } y_1, y_2, \dots y_l \in W \land l \neq 0. \\
+\hline
+\Rightarrow {} &X \in W_{\cup \cap} & \iff & X = ((y_{1,1} \cup y_{1,2} \cup \dots \cup y_{1,l_1}) \cap \dots \cap (y_{k,1} \cup y_{k,2} \cup \dots \cup y_{k,l_k}))
+\text{ за } y_{i, j} \in W, k \neq 0, l_i \neq 0.
+\end{alignat*}
+
+И следното:
+\begin{alignat*}{2}
+&X \in W_{\cap \cup} & \iff & X = (x_1 \cup x_2 \cup \dots \cup x_k) \text{ за } x_1, x_2, \dots x_k \in W_{\cap} \land k \neq 0. \\
+&X \in W_{\cap}      & \iff & X = (y_1 \cap y_2 \cap \dots \cap y_l) \text{ за } y_1, y_2, \dots y_l \in W \land l \neq 0. \\
+\hline
+\Rightarrow {} &X \in W_{\cap \cup} & \iff & X = ((y_{1,1} \cap y_{1,2} \cap \dots \cap y_{1,l_1}) \cup \dots \cup (y_{k,1} \cap y_{k,2} \cap \dots \cap y_{k,l_k}))
+\text{ за } y_{i,j} \in W, k \neq 0, l_i \neq 0.
+\end{alignat*}
+
+\quad
+Накрая остава да забележим, че новополучените условия за принадлежност към $W_{\cup \cap}$ и $W_{\cap \cup}$ са еквивалентни,
+заради дистрибутивния закон над операциите $\cap$ и $\cup$. По точно, всяко множество от вида:
+\[
+(y_{1,1} \cup y_{1,2} \cup \dots \cup y_{1,l_1}) \cap \dots \cap (y_{k,1} \cup y_{k,2} \cup \dots \cup y_{k,l_k})
+\]
+може да се запише в алтернативен вид:
+\[
+(y_{1,1} \cap y_{2,1} \cap \dots \cap y_{k,1}) \cup \dots \cup (y_{1,l_1} \cap y_{2,l_2} \cap \dots \cap y_{k,l_k})
+\]
+и обратно.
+
+\qed
+
+\end{enumerate}
+\end{problem}

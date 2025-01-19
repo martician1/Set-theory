@@ -1,0 +1,248 @@
+\begin{problem}
+Да се докаже, че за произволно множество $A$ са в сила следните:
+\begin{enumerate}
+\item
+$\size{A} = \size{A \cup \{A\}} \Rightarrow \size{\pow(A)} = \size{\pow(A) \cup \{\pow(A)\}}$
+\item
+$\size{A} = \size{A \cup \{A\}} \Rightarrow \size{\pow(\pow(A))} = \size{\pow(\pow(A)) \times \pow(\pow(A))}$
+\end{enumerate}
+%\textbf{Упътване.}
+%\textit{За 2) използвайте, че ${}^X 2$ и $\pow(X)$ са равномощни, както и че винаги,
+%когато $B \cap C = \varnothing$, множествата ${}^{B \cup C} X$ и ${}^B X \times {}^C X$ са равномощни.}
+\end{problem}
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Първо ще докажем 1). Нека $\size{A} = \size{A \cup \{A\}}$ и нека $f: A \to A \cup \{A\}$ е произволна биекция.
+Дефинираме функция $g: \pow(A) \to \pow(A) \cup \{\pow(A)\}$ по следния начин:
+\[
+g(x) =
+\begin{cases}
+\pow(A) & \text{, ако $\exists y\ [x = \{y\} \land f(y) = A]$} \\
+\{f(\union x)\} & \text{, иначе, ако $\exists y\ [x = \{y\}]$} \\
+x & \text{, иначе}
+\end{cases}
+\]
+
+\quad
+Ще докажем, че $g$ е инекция:
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $g(x_1) = g(x_2)$. Разглеждаме четири случая:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$g(x_1) = \pow(A) = g(x_2)$.
+Тогава
+$\exists y_1\ [x_1 = \{y_1\} \land f(y_1) = A] \land
+\exists y_2\ [x_2 = \{y_2\} \land f(y_2) = A]$.
+Тъй като $f$ е инекция, последното влече, че $y_1 = y_2$, откъдето $x_1 = x_2$.
+
+\item
+$g(x_1) \ne \pow(A) \ne g(x_2) \land \exists y_1\ [x_1 = \{y_1\}] \land \exists y_2\ [x_2 = \{y_2\}]$.
+Тогава $g(x_1) = \{f(y_1)\}$ и $g(x_2) = \{f(y_2)\}$.
+Тъй като $g(x_1) = g(x_2)$, последното влече, че
+$f(y_1) = f(y_2)$, откъдето $y_1 = y_2 $ и $x_1 = \{y_1\} = \{y_2\} = x_2$
+
+\item
+$\exists y_1\ [x_1 = \{y_1\}] \xor \exists y_2\ [x_2 = \{y_2\}]$.
+Но това влече, че $\size{g(x_1)} \ne \size{g(x_2)}$, което е невъзможно.
+
+\item
+$\neg \exists y_1\ [x_1 = \{y_1\}] \land \neg \exists y_2\ [x_2 = \{y_2\}]$.
+Тогава $x_1 = g(x_1) = g(x_2) = x_2$.
+\end{enumerate}
+\qed
+
+
+\end{tcolorbox}
+
+\quad
+Ще докажем, че $g$ е сюрекция:
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $y \in \pow(A) \cup \{\pow(A)\}$.
+Разглеждаме три случая:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$y = \pow(A)$. Тогава можем да вземем като първообраз на $y$ множество $x \in \pow(A)$ от вида $x = \{z\}$,
+където $z \in A \land f(z) = \{A\}$.
+
+\item
+$y \in \pow(A) \land \exists z\ [y = \{z\}]$
+Нека $s = f^{-1}(z)$. Тогава $g(\{s\}) = \{f(\union \{s\})\} = \{f(s)\} = \{z\} = y$.
+
+\item
+$y \in \pow(A) \land \neg \exists z\ [y = \{z\}]$.
+Тогава $g(y) = y$.
+\end{enumerate}
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $g$ е инекция и сюрекция, то $g$ е биекция $\Rightarrow$
+$\size{\pow(A)} = \size{\pow(A) \cup \{\pow(A)\}}$.
+
+\qed
+
+% \quad
+% Нека $t$ е произволен елемент, такъв, че $t \notin Rng(\pow(A))$.
+% За да докажем 2) е достатъчно е да построим биекция $h: \pow(\pow(A)) \to \pow(\pow(A) \cup (\pow(A) \times \{t\}))$,
+% тъй като
+% \begin{alignat*}{3}
+% \size{\pow(\pow(A)) \times \pow(\pow(A))} &= \size{{}^{\pow(A)} 2 \times {}^{\pow(A)} 2}  && \text{ // от упътването} &\\
+%                                           &= \size{{}^{\pow(A)} 2 \times {}^{\pow(A) \times \{t\}} 2}  && \text{ // от свойствата на декартовото произведение} &\\
+% 										  & = \size{{}^{\pow(A) \cup (\pow(A) \times \{t\})} 2} && \text{ // от упътването} & \\
+% 										  & = \size{\pow(\pow(A) \cup (\pow(A) \times \{t\}))} && \text{ // от упътването} &
+% \end{alignat*}
+%
+% Дефинираме $h: \pow(\pow(A)) \to \pow(\pow(A) \cup (\pow(A) \times \{t\}))$ по следния начин:
+% %\[
+% %h(x) = \{
+% %y\ |\ y \in \pow(\pow(A) \cup (\pow(A) \times \{t\})) \land
+% %( \exists a \in x\ \forall v\ [v \in a \iff (f(v) \in y \xor f(v) = A)])
+% %\}
+% %\]
+% % \begin{alignat*}{1}
+% % h(x) = \{ & y\ |\ y \in \pow(\pow(A) \cup (\pow(A) \times \{t\})) \land \exists a \in x[ \\
+% %           & (\forall v\ [(v \in a \Rightarrow f(v) \ne A) \land (v \in a \iff f(v) \in y)]) \lor \\
+% %           & (y \subseteq \pow(A) \times \{t\} \land ( \exists w \in a\ [f(w) = A \land \forall v\ [v \in a \setminus\{w\} \iff f(v) \in Dom(y)]]))]
+% % \}
+% % \end{alignat*}
+% \begin{alignat*}{1}
+% h(x) = \{ & y\ |\ y \in \pow(\pow(A) \cup (\pow(A) \times \{t\})) \land \forall z \in y\ \exists p \in x\ [ \\
+%           & (\forall v\ [v \in p \iff f(v) \in z]) \lor \\
+% 		  & (Rng(z) = t \land \exists v \in p\ [f(v) = A ] \land \forall v\ [v \in p \iff f(v) \in Dom(z) \xor f(v) = A])]
+% \}
+% \end{alignat*}
+%
+% Ще докажем, че $h$ е сюрекция:
+%
+% \begin{tcolorbox}[mybox={Доказателство:}]
+% \quad
+% Нека $y \in \pow(\pow(A) \cup (\pow(A) \times \{t\}))$. Нека:
+% \[
+% Z_1 = \{x\ |\ x \in y \land x \in \pow(A)\}
+% \]
+% \[
+% Z_2 = \{x\ |\ x \in y \land x \in \pow(A) \times {t}\}
+% \]
+% Забележете, че $\{Z_1, Z_2\}$ е разбиване на $y$.
+%
+% \smallbreak
+% Нека $x$ е следното множество:
+% \[
+% x = \{a\ |\ a \in \pow(A) \land [f[a] \in y \xor (\exists b \in a\ [f(b) = A \land f[a] \setminus b \in Dom(y)])] \}
+% \]
+% Твърдим, че $x$ е първообраз на $y$. Наистина
+%
+% \bigbreak
+% Разглеждаме четири случая:
+% %\begin{enumerate}[label={\arabic* сл.}]
+% %
+% %\end{enumerate}
+% \qed
+%
+% \end{tcolorbox}
+%
+% Ще докажем, че $h$ е инекция.
+%
+% \begin{tcolorbox}[mybox={Доказателство:}]
+% \quad
+% Нека $h(x_1) = h(x_2)$. Разглеждаме четири случая:
+% \qed
+%
+% \end{tcolorbox}
+
+% Нека сега докажем 2). Дефинираме $h: \pow(\pow(A)) \to \pow(\pow(A)) \times \pow(\pow(A))$ по следния начин:
+% \[
+% h(x) = \pair{y, z} \text{ за } y = \{a \in \pow(A)\ |\ f^{-1}[a] \in x\} \land z = \{b \in \pow(A) \ |\ f^{-1}[b \cup \{A\}] \in x\}
+% \]
+
+\bigbreak
+\quad
+Сега ще докажем 2). Нека $c = f^{-1}(A)$. Дефинираме функция $h: \pow(\pow(A)) \to \pow(\pow(A)) \times \pow(\pow(A))$ по следния начин:
+\[
+h(x) = \pair{y, z} \text{ за } y = \{f[a]\ |\ a \in x \land c \notin a\} \land z = \{f[a \setminus \{c\}]\ |\ a \in x \land c \in a\}
+\]
+\quad
+Ще докажем, че $h$ е инекция:
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $h(x_1) = \pair{y, z} = h(x_2)$. Тогава:
+\[
+\{f[a]\ |\ a \in x_1 \land c \notin a\} = y = \{f[a]\ |\ a \in x_2 \land c \notin a\}
+\]
+\[
+\{f[a \setminus \{c\}]\ |\ a \in x_1 \land c \in a\} = z = \{f[a \setminus \{c\}]\ |\ a \in x_2 \land c \in a\}
+\]
+\quad
+Нека $b$ е произволно множество. Разглеждаме два случая:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$c \notin b$. Тогава:
+\[
+b \in x_1 \iff f[b] \in y \iff b \in x_2
+\]
+\item
+$c \in b$. Тогава:
+\[
+b \in x_1 \iff f[b \setminus \{c\}] \in z \iff b \in x_2
+\]
+\end{enumerate}
+\quad
+Така от аксиомата за обемност $x_1 = x_2$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Ще докажем, че $h$ е сюрекция:
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $\pair{y, z} \in \pow(\pow(A)) \cup \pow(\pow(A))$. Дефинираме множество първообраз $x$ по следния начин:
+\[
+x = \underbrace{\{f^{-1}[b]\ |\ b \in y\}}_{M} \uplus \underbrace{\{f^{-1}[b] \cup \{c\}\ |\ b \in z\}}_{N}
+\]
+\quad
+Отсега отбелязваме, че $M$ и $N$ са чужди множества, тъй като
+$\forall x\ [x \in M \Rightarrow c \notin x] \land [x \in N \Rightarrow c \in x]$.
+Нека $h(x) = \pair{y', z'}$.
+В сила е следното:
+\begin{alignat*}{2}
+b \in y & \iff f^{-1}[b] \in x      & \text{ // от $f^{-1}[b] \notin N$ и дефиницията на $x$} \\
+        & \iff f[f^{-1}[b]] \in y'  & \text{ // от $c \notin f^{-1}[b]$ и дефиницията на $h$} \\
+		& \iff b \in y'             &
+\end{alignat*}
+\quad
+По същия начин:
+\begin{alignat*}{2}
+b \in z & \iff f^{-1}[b] \cup \{c\} \in x                         & \text{ // от $f^{-1}[b] \cup \{c\} \notin M$ и дефиницията на $x$} \\
+        & \iff f[(f^{-1}[b] \cup \{c\}) \setminus \{c\}] \in z'   & \text{ // от $c \in f^{-1}[b] \cup \{c\}$ и дефиницията на $h$} \\
+        & \iff f[f^{-1}[b]] \in z'                                & \text{ // от $c \notin f^{-1}[b]$} \\
+		& \iff b \in z'                                           &
+\end{alignat*}
+
+\quad
+Така получихме, че $h(x) = \pair{y, z} \Rightarrow \forall \pair{y, z}\, \exists x\ [h(x) = \pair{y, z}]$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $h$ е инекция и сюрекция, то $h$ е биекция
+$\Rightarrow \size{\pow(\pow(A))} = \size{\pow(\pow(A)) \times \pow(\pow(A))}$.
+
+\qed
+
+
+%\begin{tcolorbox}[mybox={Доказателство:}]
+%\quad
+%Нека $h(x_1) = h(x_2)$. Разглеждаме четири случая:
+%\qed
+
+%\end{tcolorbox}
+
