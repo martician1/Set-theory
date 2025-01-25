@@ -1,0 +1,68 @@
+\begin{problem}
+Нека $\mathcal{S}$  е непразно подмножество на $\pow(A)$, което има следните две свойства:
+\begin{enumerate}
+\item
+$A \in \mathcal{S}$
+\item
+$\mathcal{S}$ е затворено относно произволни непразни сечения, т.е. всеки път,
+когато $\mathcal{X} \neq \varnothing$ и $\mathcal{X} \subseteq \mathcal{S}$,
+е в сила $\intersection\mathcal{X} \in \mathcal{S}$, и $A \in \mathcal{S}$.
+Да се докаже, че всяка монотонна функция $h: \mathcal{S} \to \mathcal{S}$ има неподвижна точка.
+\end{enumerate}
+\end{problem}
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Ще имитираме теоремата на Тарски. Нека си дефинираме $X$ да е следното множество:
+\[
+X = \{ x \ |\ x \in \mathcal{S} \land h(x) \subseteq x\}
+\]
+
+\quad
+Да забележим, че $A \in \mathcal{S} \land h(A) \subseteq A$, откъдето $A \in X$, тоест $X$ не е празно.
+
+\quad
+Нека сега разгледаме множеството $X' = \intersection X$.
+От второто свойство на множеството $\mathcal{S}$, то е в $\mathcal{S}$.
+
+\quad
+Твърдим, че освен това $X'$ е неподвижна точка на $h$.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Първо ще докажем, че $h(X') \subseteq X'$.
+
+\begin{tcolorbox}[mybox={Доказателство:}, colback=green!20, colframe=green!60]
+\quad
+Нека $Y$ е произволен елемент на $X$. Тогава от $h$-монотонна и от $X' = \intersection X \subseteq Y$ ще бъде в сила следното:
+\[
+h(X') \subseteq h(Y) \subseteq Y
+\]
+
+\quad
+Така полуаваме, че $h(X')$ е подмножество на всеки елемент на $X$,
+откъдето $h(X')$ е подмножество на $\intersection X = X'$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Сега ще докажем, че $X' \subseteq h(X')$.
+
+\begin{tcolorbox}[mybox={Доказателство:}, colback=green!20, colframe=green!60]
+\quad
+Тъй като $h(X') \subseteq X'$, то от $h$-монотонна имаме, че:
+$h(h(X')) \subseteq h(X')$, откъдето $h(X') \in X$. Но $X' = \intersection X$,
+следователно $X \subseteq h(X')$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $h(X') \subseteq X'$ и $X' \subseteq h(X')$, то $X' = h(X')$, откъдето $X'$ е неподвижна точка на $h$.
+
+\qed
+\end{tcolorbox}
+

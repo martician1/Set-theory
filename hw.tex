@@ -56,14 +56,15 @@ escapechar=\%,
 \newcommand{\intersection}{\bigcap}
 \newcommand{\pair}[1]{\langle #1 \rangle}
 \renewcommand{\land}{\ \&\ }
-\renewcommand{\lor}{\vee}
+\renewcommand{\lor}{\ \vee\ }
 \newcommand{\size}[1]{\overline{\overline{#1}}}
 \newcommand{\xor}{\oplus}
+\newcommand{\bijarrow}{\,\mathrlap{\rightarrowtail}\twoheadrightarrow}
 
 % Define the custom tcolorbox style
 \tcbset{
   mybox/.style={
-    colback=cyan!20,       % Background color
+	colback=cyan!20,       % Background color
     colframe=cyan!80,     % Frame color
 	coltitle=white,
     fonttitle=\bfseries,  % Title font style
@@ -85,7 +86,10 @@ escapechar=\%,
 \input{3.tex}
 \input{4.tex}
 \input{5.tex}
-% \textbf{Въпрос с повишена трудност (неразрешим и неполуразрешим):}
-% Кому е полезно каквото и да е от това? Защо този предмет е задължително избираем за Компютърни Науки?
-% Не мисля, че съм писал по безсмислено домашно през живота си.
+\input{6.tex}
+\input{7.tex}
+\input{8.tex}
+\input{9.tex}
+\input{10.tex}
+
 \end{document}

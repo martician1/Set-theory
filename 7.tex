@@ -1,0 +1,335 @@
+\begin{problem}
+A. Линейно наредено множество $\mathcal{A} = \pair{A, \le}$ е
+\textit{представено като сума на $I$-индексираната фамилия $\{A_i\}_{i \in I}$}, ако:
+\begin{itemize}
+\item
+$(\forall i \in I)(A_i \neq \varnothing)$
+\item
+$(\forall i \in I)(\forall j \in I)(i \neq j \Rightarrow A_i \cap A_j = \varnothing)$
+\item
+$\union_{i \in I} A_i = A$
+\item
+$(\forall i \in I)(\forall j \in I)(i \neq j \Rightarrow (\forall x \in A_i)(\forall y \in A_j)(x < y) \lor (\forall x \in A_i)(\forall y \in A_j)(y < x))$
+\end{itemize}
+
+\quad
+\textbf{1.}
+Нека $\mathcal{A} = \pair{A, \leq}$ е линейно наредено множество,
+представено като сума на $I$-индексирана фамилия $\{A_i\}_{i \in I}$.
+Бинарната релация $\prec$ е дефинирана с равенството:
+\[
+\prec = \{z\ |\ (\exists i \in I)(\exists j \in I)(z = \pair{i, j}) \land (\exists x \in A_i)(\exists x \in A_j)(x < y)\}
+\]
+
+\quad
+Да се докаже, че $\pair{I, \preceq}$ е линейно наредено множество.
+За тази наредба $\preceq$ се казва, че е \textit{породена от представянето на $A$ като сума на
+$I$-индексираната фамилия $\{A_i\}_{i \in I}$}.
+
+\bigbreak
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Първо да забележим, че $\preceq$ е рефлексивна в $I$ поради факта, че $\preceq$ е рефлексивно затваряне на $\prec$.
+
+\quad
+За да докажем, че $\pair{I, \preceq}$ е силно антисиметрична и транзитивна ще използваме следното наблюдение:
+
+\smallbreak
+\quad
+\textbf{Наблюдение 1:}
+\[
+	(\forall i, j \in I) [i \preceq j \land i \neq j \iff (\forall x \in A_i)(\forall y \in A_j)(x < y) \land i \neq j]
+\]
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+
+\quad
+Нека $i, j \in I$. Тогава:
+\begin{alignat*}{4}
+i \preceq j \land i \neq j & \iff & ( & \exists x \in A_i)(\exists y \in A_j)(x < y) \land i \neq j        & \text{ // от дефиницията на $\prec$ } \\
+                           & \iff & ( & \exists x \in A_i)(\exists y \in A_j)(x < y)) \land i \neq j \land & \text{} \\
+						   &      & ( &(\forall x \in A_i)(\forall y \in A_j)(x < y) \lor                  & \text{} \\
+						   &      & ( &\forall x \in A_i)(\forall y \in A_j)(y < x))                       & \text{ // от $A$ - представено като сума на } \\
+						   &      &   &                                                                    & \text{ // $I$-индексирана фамилия $\{A_i\}_{i \in I}$} \\
+                           & \iff & ( &\forall x \in A_i)(\forall y \in A_j)(x < y)) \land i \neq j        & \text{ // от $A_i \neq \varnothing \neq A_j$}
+\end{alignat*}
+\qed
+\end{tcolorbox}
+
+\quad
+Ще докажем, че $\preceq$ е силно антисиметрична:
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $i, j \in I$. Тогава:
+\begin{alignat*}{2}
+i \preceq j \land i \neq j & \iff (\forall x \in A_i)(\forall y \in A_j)(x < y) \land i \neq j & \text{ // от \textbf{Наблюдение 1}} \\
+            & \iff \neg(\exists x \in A_j)(\exists y \in A_i)(x < y) \land i \neq j & \text{} \\
+			& \iff j \npreceq i \land i \neq j & \text { // от дефиницията на $\prec$}
+\end{alignat*}
+\qed
+\end{tcolorbox}
+
+\quad
+Ще докажем, че $\preceq$ е транзитивна.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $i, j, k \in I$ са такива, че $i \preceq j \land j \preceq k$.
+Ако $i = j$, то имаме, че $i = j \preceq k$.
+По подобен начин, ако $j = k$, то $i \preceq j = k$.
+Ако $i = k$, то от рефлексивността на $\preceq$ ще бъде изпълнено $i \preceq i = k$.
+В случая, когато $i \ne j \ne k \ne i$ по \textbf{Наблюдение 1} ще бъдат в сила:
+
+\begin{itemize}
+\item
+$(\forall x \in A_i)(\forall y \in A_j)(x < y)$
+\item
+$(\forall y \in A_j)(\forall z \in A_k)(y < z)$
+\end{itemize}
+
+\quad
+От транзитивна на релацията $<$ и $A_j \neq \varnothing$ горните две влекат
+$(\forall x \in A_i)(\forall z \in A_k)(x < z)$,
+откъдето отново от \textbf{Наблюдение 1} следва, че $i \preceq k$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $\preceq$ е рефлексивна, силно антисиметрична и транзитивна, то $\preceq$ е линейна наредба
+и $\pair{I, \preceq}$ е линейно наредено множество.
+
+\qed
+
+\quad
+Б. Нека $\mathcal{C} = \pair{C, \leq}$ е линейно наредено множество.
+
+\quad
+$\mathcal{C}$ се нарича \textit{гъсто}, ако има поне два различни елемента и:
+\[
+(\forall x \in C)(\forall y \in C)(x < y \Rightarrow (\exists z \in C)(x < z \land z < y))
+\]
+
+\quad
+$\mathcal{C}$ се нарича \textit{разредено}, ако всеки път,
+когато $B \subseteq C,\, \pair{B, \leq \cap (B \times B)}$ не е гъсто.
+
+\quad
+\textbf{2.} Да се докаже, че всяко линейно наредено множество $\mathcal{A} = \pair{A, \leq}$ е
+разредено или може да се представи като сума на такава $I$-индексирана
+фамилия $\{A_i\}_{i \in I}$, така че всяко едно от множествата $\pair{A_i, \leq \cap (A_i \times A_i)}$
+е разредено и $\pair{I, \preceq}$ е гъсто, където $\preceq$ е породената от това представяне наредба.
+
+\bigbreak
+\textbf{Решение:}
+\smallbreak
+\quad
+Нека $\mathcal{A} = \pair{A, \le}$ е произволно неразредено линейно наредено множество.
+Ще докажем, че $\mathcal{A}$ може да се представи като сума на $I$-индексирана фамилия $\{A_i\}_{i \in I}$,
+така че всяко едно от множествата $\pair{A_i, \leq \cap (A_i \times A_i)}$
+е разредено и $\pair{I, \preceq}$ е гъсто, където $\preceq$ е породената от това представяне наредба.
+
+Първо нека си дефинираме няколко помощни множества и нотации:
+\[
+\operatorname{interval}(x, y) \coloneq \{z\ |\ z \in A \land (x \le z \le y \lor y \le z \le x)\}
+\]
+\[
+\operatorname{dense}(B) \iff \size{B} \ge 2 \land (\forall x \in B)(\forall y \in B)(x < y \Rightarrow (\exists z \in B)(x < z < y))
+\]
+\[
+\operatorname{diluted}(B) \iff (\forall D \subseteq B)(\neg \operatorname{dense}(D))
+\]
+\[
+\sim\ \coloneq \{\pair{x, y} \in A^2\ |\ \operatorname{diluted}(\operatorname{interval}(x, y))\}
+\]
+
+\quad
+Твърдим, че $\sim$ е релация на еквивалентност.
+
+\quad
+Ще докажем, че $\sim$ е рефлексивна.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $x \in A$. Не е трудно да се съборази, че $\operatorname{interval}(x, x) = \{x\}$,
+откъдето $\operatorname{diluted}(\operatorname{interval}(x, x))$ и $\pair{x, x} \in A$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Ще докажем, че $\sim$ е симетрична.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $\pair{x, y} \in\ \sim$. Тогава $\operatorname{diluted}(\operatorname{interval}(x, y))$,
+и, тъй като $\operatorname{interval}(x, y) = \operatorname{interval}(y, x)$, то в сила ще бъде и
+$\operatorname{diluted}(\operatorname{interval}(y, x))$, откъдето $\pair{y, x} \in\ \sim$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+За да докажем, че $\sim$ е транзитивна, ще ползваме следните наблюдения:
+
+\smallbreak
+\quad
+\textbf{Наблюдение 2:}
+\[
+(\forall x, y, z \in A) [\operatorname{interval}(x, z) \subseteq \operatorname{interval}(x, y) \cup \operatorname{interval}(y, z)]
+\]
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $x, y, z \in A$, $a \in \operatorname{interval}(x, z)$ и нека БОО $x < z$. Тогава $x \le a \le z$.
+Разглеждаме два случая:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$a \le y$. Тогава $x \le a \le y$, откъдето
+$a \in \operatorname{interval}(x, y) \subseteq \operatorname{interval}(x, y) \cup \operatorname{interval}(y, z)$.
+
+\item
+$a > y$. Тогава $y \le a \le z$, откъдето
+$a \in \operatorname{interval}(y, z) \subseteq \operatorname{interval}(x, y) \cup \operatorname{interval}(y, z)$.
+
+
+\end{enumerate}
+
+\qed
+\end{tcolorbox}
+
+\quad
+\textbf{Наблюдение 3:}
+\[
+(\forall x \in A) [\operatorname{diluted}(x) \Rightarrow (\forall y \subseteq x) [\operatorname{diluted}(y)]
+\]
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $x \in A$, $\operatorname{diluted}(x)$, $y \subseteq x$ и нека $a \subseteq y$.
+Тогава $a \subseteq x$, откъдето $\neg \operatorname{dense}(a)$.
+
+\qed
+\end{tcolorbox}
+
+
+\quad
+Сега ще докажем, че $\sim$ е транзитивна.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $x, y, z \in A$ са такива, че $\pair{x, y}, \pair{y, z} \in\ \sim$. Тогава $\operatorname{diluted}(\operatorname{interval}(x, y))$
+и $\operatorname{diluted}(\operatorname{interval}(y, z))$.
+Ще докажем, че $\operatorname{diluted}(\operatorname{interval}(x, y) \cup \operatorname{interval}(y, z))$.
+Да допуснем противното.
+Нека вземем $a$ такова, че $a \subseteq interval(x, y) \cup interval(y, z) \land \operatorname{dense}(a)$.
+Нека БОО\footnote{Лесно може да се съобрази, че всяко гъсто множество има поне 3 елемента,
+откъдето сечението на $a$ с един от интервалите трябва да съдържа поне 2 елемента.}
+$\size{a \cap \operatorname{interval}(x, y)} \ge 2$.
+Тогава от $\operatorname{dense}(a)$ и дефиницията на $\operatorname{interval}$ ще бъде изпълнено:
+\[
+(\forall x \in a \cap \operatorname{interval}(x, y))(\forall y \in a \cap \operatorname{interval}(x, y))(x < y \Rightarrow (\exists z \in a \cap \operatorname{interval}(x, y)\footnote{$z \in a$ от $\operatorname{dense}(a)$, а $z \in \operatorname{interval}(x,y)$ от $(x < y < z)$})(x < z < y))
+\]
+\quad
+откъдето
+$\operatorname{dense}(a \cap \operatorname{interval}(x, y))$.
+Но ние знаем, че $a \cap \operatorname{interval}(x, y) \subseteq \operatorname{interval}(x, y)$,
+противоречие с $\operatorname{diluted} ( \operatorname{interval} (x, y))$.
+
+\quad
+Така показахме, че $\operatorname{diluted}(\operatorname{interval}(x, y) \cup \operatorname{interval}(y, z))$.
+Щом това е изпълнено,
+то от \textbf{Наблюдения 2 и 3} $\operatorname{diluted}(\operatorname{interval}(x, z))$,
+откъдето $\pair{x, z} \in\ \sim$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $\sim$ е рефлексивна, симетрична и транзитивна, то $\sim$ е релация на еквивалентност.
+
+\quad
+Нека сега вземем $I$ да е множеството от класовете на еквивалентност на $\sim$ и нека за $i \in I$ дефинираме $A_i$ като елементите на класа $i$:
+\[
+A_i \coloneq \{x\ |\ x \in i\}
+\]
+
+\quad
+Твърдим, че с текущите дефиниции, $\mathcal{A}$ е
+представено като сума на $I$-индексираната фамилия $\{A_i\}_{i \in I}$.
+Лесно се вижда, че първите три условия за това са изпълнени,
+понеже $\{A_i\}_{i \in I}$ е разбиране на $A$ (от $\sim$ - ралция на еквивалентност).
+Ще докажем, че последното условие:
+\[
+(\forall i \in I)(\forall j \in I)(i \neq j \Rightarrow (\forall x \in A_i)(\forall y \in A_j)(x < y) \lor (\forall x \in A_i)(\forall y \in A_j)(y < x))
+\]
+\quad
+също е в сила.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека допуснем противното, тоест нека:
+\[
+(\exists i \in I)(\exists j \in I)(i \neq j \land ((\exists x \in A_i)(\exists y \in A_j)(x \le y) \land (\exists x' \in A_i)(\exists y' \in A_j)(y' \le x')))
+\]
+\quad
+Нека вземем $i, j \in I$, $x, x' \in A_i$ и $y, y' \in A_j$ такива, че $i \neq j$ и $x \le y \land x' \ge y'$. Разглеждаме два случая:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$x' \ge y$. Тогава $\operatorname{interval}(x, y) \subseteq \operatorname{interval}(x, x')$.
+От \textbf{Наблюдение 3} това влече, че $y \in A_i$, откъдето $i = j$, противоречие.
+
+% \item
+% $y' \le x$. Тогава $\operatorname{interval}(x, y) \subseteq \operatorname{interval}(y, y')$.
+% От \textbf{Наблюдение 3} това влече, че $x \in A_j$, откъдето $i = j$, противоречие.
+
+\item
+$x' < y$.
+Тогава $\operatorname{interval}(x', y) \subseteq \operatorname{interval}(y, y')$.
+От \textbf{Наблюдение 3} това влече, че $x' \in A_j$, откъдето $i = j$, противоречие.
+\end{enumerate}
+
+\qed
+\end{tcolorbox}
+
+\quad
+Ще покажем, че също така $\forall i \in I\ (diluted(A_i))$.
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Да допуснем противното. Нека $i \in I$ и $C \subseteq A_i$ са такива, че $\operatorname{dense}(C)$
+и нека $x$ и $y$ са произволни елементи на $C$.
+Тогава $\operatorname{dense}(\operatorname{interval}(x, y) \cap C)$,
+но в същото време $\operatorname{diluted}(\operatorname{interval}(x, y))$ от
+$x, y \in A_i$. Противоречие.
+
+\qed
+\end{tcolorbox}
+\quad
+Накрая ще покажем, че $\pair{I, \preceq}$ е гъсто.
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $i, j \in I$ са такива, че $i \prec j$ и $i \neq j$ и нека $a$ е произволен елемент на $A_i$ и $b$ е произволен елемент на $A_j$.
+Тъй като $i \neq j$, то $\neg \operatorname{diluted}(\operatorname{interval}(a, b))$, тоест:
+\[
+(\exists C \subseteq \operatorname{interval}(a, b)) (\operatorname{dense}(C))
+\]
+\quad
+Нека $c$ е произволен некраен елемент на $C$ и нека $k \in I$ е такова, че $c \in A_k$.
+Тогава $i \prec k \land i \neq k$.
+Наистина, като свидетели за $i \prec k$ можем да вземем $a$ и $c$, понеже $a < c$,
+а $i \neq k$, тъй като $\neg \operatorname{diluted}(\operatorname{interval}(a, c))$.
+
+\quad
+По подобен начин може да се покаже, че $k \prec j \land k \neq j$.
+
+\quad
+Така $k \in I$ е такова, че $i \prec k \prec j$ и $i \neq k \neq j$, откъдето $\pair{I, \preceq}$ е гъсто.
+
+\qed
+\end{tcolorbox}
+
+\qed
+
+\end{problem}
