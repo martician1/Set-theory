@@ -1,0 +1,86 @@
+\begin{problem}
+\textbf{(ZF)}
+Нека $\pair{A, \leq}$ е добре наредено множество.
+В $A \times A$ дефинираме бинарната релация $\leq^{can}$ така:
+
+\smallbreak
+\quad
+За произволни $a_1, a_2, b_1$ и $b_2$ от $A$, $\pair{\pair{a_1, b_1}, \pair{a_2, b_2}} \in \leq^{can}$
+точно тогава, когато:
+\begin{align*}
+\operatorname{max}_{\leq}\{a_1, b_1\} & < \operatorname{max}_{\leq}\{a_2, b_2\} \text{ или} \\
+\operatorname{max}_{\leq}\{a_1, b_1\} & = \operatorname{max}_{\leq}\{a_2, b_2\} \land a_1 < a_2 \text{ или} \\
+\operatorname{max}_{\leq}\{a_1, b_1\} & = \operatorname{max}_{\leq}\{a_2, b_2\} \land a_1 = a_2 \land b_1 \leq b_2
+\end{align*}
+\quad
+Да се докаже, че $\pair{A \times A, \leq^{can}}$ е добре наредено множество.
+\end{problem}
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека $X$ е непразно подмножество на $A \times A$. Ще докажем, че $X$ има най-малък елемент относно дефинираната в условието релация.
+За целта ще използваме шест функции: $\operatorname{max}, \operatorname{fst}, \operatorname{snd:} A \times A \to A;$
+$f, g, h: \pow(X) \to \pow(X)$, дефинирани по следните начини:
+\[
+\operatorname{max}(a, b) = \operatorname{max}_{\leq}\{a, b\}
+\]
+\[
+\operatorname{fst}(a, b) = a
+\]
+\[
+\operatorname{snd}(a, b) = b
+\]
+\[
+f(B) = \{b\ |\ b \in B \land \operatorname{max}(b) = \operatorname{min}_{\leq}(\operatorname{max}[B])\}
+\]
+\[
+g(B) = \{b\ |\ b \in B \land \operatorname{fst}(b) = \operatorname{min}_{\leq}(\operatorname{fst}[B])\}
+\]
+\[
+h(B) = \{b\ |\ b \in B \land \operatorname{snd}(b) = \operatorname{min}_{\leq}(\operatorname{snd}[B])\}
+\]
+
+\quad
+Нека сега разгледаме множеството $C \coloneq h(g(f(X)))$.
+Да забележим, че от дефиницциите на $f, g$ и $h$ и от $X \neq \varnothing$ следва, че то не е празно.
+Нека тогава $c = \pair{c_1, c_2}$ е произволен елемент на $C$.
+Твърдим, че $c$ е най-малкият елемент на $X$.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $a = \pair{a_1, a_2} \in X$.
+Да допуснем, че $a < c$
+Тогава е изпълнено едно от трите:
+\begin{enumerate}[label={\arabic* сл.}]
+\item
+$\operatorname{max}_{\leq}\{a_1, a_2\} < \operatorname{max}_{\leq}\{c_1, c_2\}$.
+Тогава $c \notin f(X)$, откъдето
+$c \notin g(f(X))$ и $c \notin h(g(f(X))) = C$.
+Противоречие с $c \in C$.
+
+\item
+$\operatorname{max}_{\leq}\{a_1, a_2\} = \operatorname{max}_{\leq}\{c_1, c_2\} \land a_1 < c_1$.
+Тогава $c \notin g(f(X))$,
+откъдето $c \notin h(g(f(X))) = C$.
+Противоречие с $c \in C$.
+
+\item
+$\operatorname{max}_{\leq}\{a_1, a_2\} = \operatorname{max}_{\leq}\{c_1, c_2\} \land a_1 = c_1 \land a_2 \leq c_2$.
+Ако $a_2 < c_2$, то $c \notin h(g(f(X))) = C$. Противоречие с $c \in C$.
+Така $a_2 = c_2$, откъдето $a = c$.
+Противоречие с $a < c$.
+
+\end{enumerate}
+
+\quad
+Така допускането ни се оказа грешно, откъдето $a \leq c$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Показахме, че произволно подмножество на $A \times A$ има най-малък елемент. Така $A \times A$ е добре наредено.
+
+\qed

@@ -1,2 +1,108 @@
 \begin{problem}
+\textbf{(ZF)}
+Нека $\pair{A, \leq}$ е линейно наредено множество.
+Нека функцията $\pi: \pow(A) \to \pow(A)$ е определена чрез:
+\[
+\pi(X) = \{y \in A\ | \ seg(y) \subseteq X\}
+\]
+
+Покажете, че $\pi$ е монотонна и, че ако $A^*$ е най-малката неподвижна точка на $\pi$,
+то за всяко $x \in A$
+\[
+x \in A^* \iff \pair{seg(x), \leq \cap (seg(x) \times seg(x))} \text{ е добре наредено множество.}
+\]
 \end{problem}
+
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Първо ще направим няколко наблюдения.
+
+\quad
+\textbf{Наблюдение 1:}
+Всяко подмножество $X$ на $A$ $\pi(X)$ е начален сегмент на $A$.
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $X \in \pow(A)$, $a \in \pi(X)$ и нека $b \in A$ е такова, че $b < a$.
+Тогава $seg(a) \subseteq X$ и $b \in seg(a)$, откъдето $seg(b) \subseteq seg(a) \in X$,
+следователно $b \in \pi(X)$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+\textbf{Наблюдение 2:}
+$\forall x \in A\ [A^* \neq seg(x)]$.
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека сега допуснем, че същесвува $x \in A$ такова, че $A^* = seg(x)$ и нека фиксираме това $x$.
+Тогава от дефиницията на $\pi$, $x \in \pi(A^*) = A^* = seg(x)$.
+Противоречие.
+
+\qed
+\end{tcolorbox}
+
+\quad
+\textbf{Наблюдение 3:}
+$\forall X \subsetneq A^*\, \exists x \in A\ [\pi(X) = seg(x)]$.
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Да допуснем противното. Нека $X \subsetneq A^*$ е такова, че $\forall x \in A\ [\pi(X) \neq seg(x)]$.
+Тогава $\pi(\pi(X)) = \pi(X)$.
+\begin{tcolorbox}[mybox={Доказателство:}, colback=green!20, colframe=green!60]
+\quad
+Нека $x \in \pi(\pi(X))$. Тогава $seg(x) \subseteq \pi(X)$.
+Тъй като $\pi$ е начален сегмент и $\pi(X) \neq seg(x)$,
+последното влече, че $x \in \pi(\pi(X)).$
+
+\quad
+Нека сега $x \in \pi(X)$.
+Тогава $seg(x) \subseteq X$ и $\forall y < x\ [ seg(y) \subsetneq seg(x) \subseteq X]$, тоест $\forall y < x\ [y \in \pi(X)]$.
+Последното влече, че $seg(x) \subseteq \pi(X)$, откъдето $x \in \pi(\pi(X))$.
+
+\qed
+
+\end{tcolorbox}
+
+\quad
+Така получихме, че $\pi(X)$ е неподвижна точка. Тъй като $A^*$ е най-малката такава, то $X = A^*$.
+
+\qed
+\end{tcolorbox}
+
+
+\quad
+$(\Rightarrow)$ Нека сега вземем $x$ да е произволен елемент на $A^*$
+и нека вземем $y$ да е произволно непразно подмножество на $seg(x)$.
+Ще докажем, че $y$ има най-малък елемент относно $\leq$.
+За целта си дефинираме следното множество:
+\[
+X = \{ a\ |\ a \in \pow(seg(x)) \land \exists b\ [ b \in y \land  a = seg(b)] \}
+\]
+\quad
+Тъй като $\intersection X \subsetneq A^*$, то по \textbf{Наблюдение 3}
+$(\exists a \in A)(\intersection X = seg(a))$.
+Така по \textbf{Лема 3} $y$ има най-малък елемент.
+
+\qed
+
+\quad
+$(\Leftarrow)$ Нека сега
+$\pair{seg(x), \leq \cap (seg(x) \times seg(x))}$
+е добре наредено множество.
+Да допуснем, че $x \notin A^*$.
+Така от $A^*$ - начален сегмент, следва че $A^* \subsetneq seg(x)$.
+
+\quad
+Нека сега разгледаме множеството $seg(x) \setminus A^* \subseteq seg(x)$.
+Тъй като
+$\pair{seg(x), \leq \cap (seg(x) \times seg(x))}$
+е добре наредено множество, то $seg(x) \setminus A^*$ има минимален елемент $z$.
+Това обаче би означавало, че $A^* = seg(z)$, противоречие с \textbf{Наблюдение 2}.
+
+\quad
+Така допускането ни се оказа грешно, откъдето $x \in A^*$.
+
+\qed

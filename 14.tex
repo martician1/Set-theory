@@ -1,0 +1,128 @@
+\begin{problem}
+Нека $A$ и $B$ са множества.
+Ще казваме, че $A \leq B$, ако съществува инекция
+$f : A \rightarrowtail B$.
+Ще казваме, че $A \leq^* B$, ако съществува сюрекция
+$f : B \twoheadrightarrow A$.
+Докажете, че:
+\begin{enumerate}
+\item
+\textbf{(ZF)}
+За произволни множества $A \neq \varnothing$ и $B$ е в сила:
+$A \leq B \Rightarrow A \leq^* B$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека $f: A \rightarrowtail B$ е произволна инекция и нека $a$ е произволен елемент на $A$.
+Дефинираме функцията $g: B \rightarrow A$ по следния начин:
+\[
+g(b) = \begin{cases}
+       f^{-1}(b) & \text{, ако $b \in \operatorname{Rng}(f)$} \\
+	   a       & \text{, иначе}
+       \end{cases}
+\]
+
+\quad
+Твърдим, че $g$ е сюрекция.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $c \in A$. Тогава $g(f(c)) = f^{-1}(f(c)) = c$, тъй като $f(c) \in \operatorname{Rng(f)}$.
+
+\qed
+\end{tcolorbox}
+
+\item
+\textbf{(ZF)}
+За произволни множества $A$ и $B$ е в сила:
+$A \leq^* B \Rightarrow \pow(A) \leq \pow(B)$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека $f: B \twoheadrightarrow A$ е произволна сюрекция.
+Дефинираме функцията $g: \pow(A) \rightarrow \pow(B)$ по следния начин:
+\[
+g(X) = \{b\ |\ b \in B \land f(b) \in X \}
+\]
+
+\quad
+Твърдим, че $g$ е инекция.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $X, X' \in \pow(A)$ са такива, че $g(X) = g(X')$.
+Да допуснем, че $X \neq X'$. Нека БОО вземем $a \in A$ такова, че $a \in X \land a \notin X'$
+и нека $b$ е такова, че $f(b) = a$. Тогава $b \in g(X) \land b \notin g(X')$,
+откъдето $g(X) \neq g(X')$. Противоречие.
+
+\quad
+Така допускането ни се оказа грешно, следователно $X = X'$.
+
+\qed
+\end{tcolorbox}
+
+\item
+\textbf{(ZF)}
+За произволни множества $A$ и $B$, ако $B$ е добре наредимо, то е в сила:
+$A \leq^* B \Rightarrow A \leq B$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека $f: B \twoheadrightarrow A$ е произволна сюрекция и нека $\pair{B, \leq}$ е произволна добра наредба.
+Дефинираме функцията $g: A \rightarrow B$ по следния начин:
+\[
+g(a) = min_{\leq}(\{c\ |\ c \in B \land f(c) = a\})
+\]
+
+\quad
+Твърдим, че $g$ е инекция.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $a, a' \in A$ са такива, че $g(a) = g(a')$.
+Тогава от дефиницията на $g$ имаме, чe:
+\[
+a = f(g(a)) = f(g(a')) = a'
+\]
+\qed
+\end{tcolorbox}
+
+
+\item
+\textbf{(ZFC)}
+За произволни множества $A$ и $B$ е в сила:
+$A \leq^* B \Rightarrow A \leq B$.
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+Нека $f: B \twoheadrightarrow A$ е произволна сюрекция
+и нека $h: \pow(B) \setminus \varnothing \to B$ е произволна функция на избора.
+Дефинираме функцията $g: A \rightarrow B$ по следния начин:
+\[
+g(a) = h(\{c\ |\ c \in B \land f(c) = a\})
+\]
+
+\quad
+Твърдим, че $g$ е инекция.
+
+\begin{tcolorbox}[mybox={Доказателство:}]
+\quad
+Нека $a, a' \in A$ са такива, че $g(a) = g(a')$.
+Тогава от дефиницията на $g$ имаме, чe:
+\[
+a = f(g(a)) = f(g(a')) = a'
+\]
+\qed
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{problem}

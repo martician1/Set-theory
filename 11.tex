@@ -1,0 +1,102 @@
+\begin{problem}
+\textbf{(ZF)}
+Нека $A \neq \varnothing$ и $f: \pow(A) \setminus \{\varnothing \} \Rightarrow A$ е функция на избора за $A$.
+Да се докаже, че следните две условия са еквивалентни:
+\begin{enumerate}
+\item
+$\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
+
+\item
+съществува такава добра наредба $\leq$ в $A$, че за всяко непразно подмножество $y$ на $A$ е в сила $f(y) = min_{\leq} y$.
+\end{enumerate}
+
+\end{problem}
+
+\textbf{Решение:}
+
+\smallbreak
+\quad
+$(\Rightarrow)$ Нека първо приемем, че
+$\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
+Дефинираме си релацията $\leq$ по следния начин:
+\[
+\leq \coloneq \{ (a, b)\ |\ (a, b) \in A^2 \land f(\{a, b\}) = a \}
+\]
+
+\quad
+Ясно е, че $\leq$ е рефлексивна, тъй като $(\forall a \in A)(f(\{a, a\}) = f(\{a\}) = a)$.
+
+\quad
+Ще докажем, че  $\leq$ е силно антисиметрична:
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $a, b \in A$. Тогава:
+\begin{alignat*}{2}
+a < b & \iff f(\{a, b\}) = a        & \text{ // от дефиницията на $<$ } \\
+      & \iff f(\{a, b\}) \neq b     & \text{ // от $f$ - функция на избора} \\
+      & \iff b \not< a              & \text{ // от дефиницията на $<$}
+\end{alignat*}
+\qed
+\end{tcolorbox}
+
+\quad
+Ще докажем, че  $\leq$ е транзитивна:
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $a, b, c \in A$ са такива, че $a \leq b \land b \leq c$.
+Тогава $f(\{a, b\}) = a$ и $f(\{b, c\}) = b$, откъдето по 1.
+$f(\{a, b, c\}) = f(\{a, b\} \cup \{b, c\}) = f(\{f(\{a, b\}), f(\{b,c\})\}) = f(\{a, b\}) = a$.
+Същевременно
+$f(\{a, b, c\}) = f(\{a, c\} \cup \{b\}) = f(\{f(\{a, c\}), f(\{b\})\}) = f(\{f(\{a, c\}), b\})$
+Така $a = f(\{f(a, c), b\})$.
+От $f$-функция на избора, последното влече, че $a \in \{f(\{a, c\}), b\}$,
+откъдето $f(\{a, c\}) = a$ и $a < c$.
+
+\qed
+\end{tcolorbox}
+
+\quad
+Щом $\leq$ е рефлексивна, силно антисиметрична и транзитивна, то $\leq$ е линейна наредба
+
+\quad
+Ще докажем, че освен това $\leq$ е добра наредба.
+
+\quad
+Нека $y$ е произволно непразно подмножество на $A$. Твърдим, че $y$ има най-малък елемент $f(y)$.
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Да забележим, че от $f$ - функция на избора следва, че $f(y) \in y$.
+Нека сега допуснем, че $f(y)$ не е най-малък елемент на $y$. Тогава
+$\exists z \in y\ [z < f(y)]$.
+Нека си фиксираме такова $z$.
+От $z < f(y)$ ще бъде изпълнено, че $f(\{z, f(y)\}) = z$.
+Но тогава от 1.
+$f(y) = f(y \cup \{z\}) = f(\{f(y), f(\{z\})\}) = f(\{f(y), z\}) = z$.
+Противоречие с $z < f(y)$.
+
+\qed
+\end{tcolorbox}
+
+\bigbreak
+\quad
+$(\Leftarrow)$
+Нека сега съществува такава добра наредба $\leq$ в $A$, че за всяко непразно подмножество $y$ на $A$ е в сила $f(y) = min_{\leq} y$
+и нека фиксираме тази наредба.
+Ще докажем, че:
+\[
+\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )
+\]
+
+\begin{tcolorbox}[mybox, title={Доказателство:}]
+\quad
+Нека $x, y \in Dom(f)$.
+От 2. $f(x) = min_{\leq} x$ и $f(y) = min_{\leq} y$.
+Нека също така забележим, че минимумът на $x \cup y$ може да е само $f(x)$ или $f(y)$.
+БОО нека минимумът е $f(x)$.
+Тогава $f(x \cup y) = min_{\leq} (x \cup y) = f(x) = f(\{f(x), f(y)\})$.
+
+\qed
+\end{tcolorbox}
