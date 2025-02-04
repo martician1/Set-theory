@@ -1,10 +1,10 @@
 \begin{problem}
 \textbf{(ZF)}
-Нека $A \neq \varnothing$ и $f: \pow(A) \setminus \{\varnothing \} \Rightarrow A$ е функция на избора за $A$.
+Нека $A \neq \varnothing$ и $f: \pow(A) \setminus \{\varnothing \} \to A$ е функция на избора за $A$.
 Да се докаже, че следните две условия са еквивалентни:
 \begin{enumerate}
 \item
-$\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
+$\forall x \forall y (x, y \in \operatorname{Dom}(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
 
 \item
 съществува такава добра наредба $\leq$ в $A$, че за всяко непразно подмножество $y$ на $A$ е в сила $f(y) = min_{\leq} y$.
@@ -17,7 +17,7 @@ $\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) 
 \smallbreak
 \quad
 $(\Rightarrow)$ Нека първо приемем, че
-$\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
+$\forall x \forall y (x, y \in \operatorname{Dom}(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )$
 Дефинираме си релацията $\leq$ по следния начин:
 \[
 \leq \coloneq \{ (a, b)\ |\ (a, b) \in A^2 \land f(\{a, b\}) = a \}
@@ -33,9 +33,9 @@ $\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) 
 \quad
 Нека $a, b \in A$. Тогава:
 \begin{alignat*}{2}
-a < b & \iff f(\{a, b\}) = a        & \text{ // от дефиницията на $<$ } \\
-      & \iff f(\{a, b\}) \neq b     & \text{ // от $f$ - функция на избора} \\
-      & \iff b \not< a              & \text{ // от дефиницията на $<$}
+a < b \land a \neq b & \iff f(\{a, b\}) = a \land a \neq b        & \text{ // от дефиницията на $<$ } \\
+                     & \iff f(\{a, b\}) \neq b \land a \neq b     & \text{ // от $f$ - функция на избора} \\
+                     & \iff b \not< a \land a \neq b              & \text{ // от дефиницията на $<$}
 \end{alignat*}
 \qed
 \end{tcolorbox}
@@ -45,14 +45,14 @@ a < b & \iff f(\{a, b\}) = a        & \text{ // от дефиницията на
 
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
-Нека $a, b, c \in A$ са такива, че $a \leq b \land b \leq c$.
+Нека $a, b, c \in A$ са такива, че $a \leq b$ и $b \leq c$.
 Тогава $f(\{a, b\}) = a$ и $f(\{b, c\}) = b$, откъдето по 1.
 $f(\{a, b, c\}) = f(\{a, b\} \cup \{b, c\}) = f(\{f(\{a, b\}), f(\{b,c\})\}) = f(\{a, b\}) = a$.
 Същевременно
 $f(\{a, b, c\}) = f(\{a, c\} \cup \{b\}) = f(\{f(\{a, c\}), f(\{b\})\}) = f(\{f(\{a, c\}), b\})$
 Така $a = f(\{f(a, c), b\})$.
 От $f$-функция на избора, последното влече, че $a \in \{f(\{a, c\}), b\}$,
-откъдето $f(\{a, c\}) = a$ и $a < c$.
+откъдето $f(\{a, c\}) = a$ и $a \leq c$.
 
 \qed
 \end{tcolorbox}
@@ -87,12 +87,12 @@ $(\Leftarrow)$
 и нека фиксираме тази наредба.
 Ще докажем, че:
 \[
-\forall x \forall y (x, y \in Dom(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )
+\forall x \forall y (x, y \in \operatorname{Dom}(f) \Rightarrow f(x \cup y) = f(\{ f(x), f(y) \}) )
 \]
 
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
-Нека $x, y \in Dom(f)$.
+Нека $x, y \in \operatorname{Dom}(f)$.
 От 2. $f(x) = min_{\leq} x$ и $f(y) = min_{\leq} y$.
 Нека също така забележим, че минимумът на $x \cup y$ може да е само $f(x)$ или $f(y)$.
 БОО нека минимумът е $f(x)$.

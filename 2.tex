@@ -33,7 +33,8 @@ K = \{L\ |\ L \in \pow(I) \land (\forall j \in J) (L \cap I_j \neq \varnothing)\
 
 \quad
 Нека $L$ е произволен елемент на $K$ и нека $y \in L \cap I_k$.
-От (1) $x \in A_y$, освен това знаем, че $\displaystyle y \in L \Rightarrow x \in \union_{i \in L} A_i$.
+От (1) $x \in A_y$.
+Освен това знаем, че $\displaystyle y \in L$, откъдето $\displaystyle x \in \union_{i \in L} A_i$.
 
 \quad
 Щом $\displaystyle x \in \union_{i \in L} A_i$ за произволно $L \in K$,
@@ -52,9 +53,11 @@ K = \{L\ |\ L \in \pow(I) \land (\forall j \in J) (L \cap I_j \neq \varnothing)\
 \quad
 Нека \(\displaystyle x \in \intersection_{L \in K} \union_{i \in L} A_i\).
 Да допуснем, че
-$\displaystyle x \notin \union_{j \in J} \intersection_{i \in I_j} A_i \iff
-\forall j \in J\ [x \notin \intersection_{i \in I_j} A_i] \iff
-\forall j \in J\ \exists k \in I_j \ [x \notin A_k]$.
+$\displaystyle x \notin \union_{j \in J} \intersection_{i \in I_j} A_i$
+тоест
+$\displaystyle \forall j \in J\ [x \notin \intersection_{i \in I_j} A_i]$
+тоест
+$\displaystyle \forall j \in J\ \exists k \in I_j \ [x \notin A_k]$.
 
 \quad
 Нека разгледаме множество $L$ от такива индекси $k$:
@@ -99,7 +102,7 @@ $\displaystyle \union_{j \in J} \intersection_{i \in I_j} A_i \supseteq \interse
 $\displaystyle x \in \intersection_{j \in J} \union_{i \in I_j} A_i$.
 Тогава:
 \begin{equation}
-\forall j \in J \ [x \in \union_{i \in I_j} A_i] \iff
+%\forall j \in J \ [x \in \union_{i \in I_j} A_i] \iff
 \forall j \in J \ \exists k \in I_j\ [x \in A_k]
 \end{equation}
 
@@ -138,11 +141,11 @@ $\displaystyle x \in \union_{L \in K} \intersection_{i \in L} A_i$.
 такова че $\displaystyle x \in \intersection_{i \in L} A_i$.
 Нека $k$ е произволен елемент на $J$.
 Твърдим, че $\displaystyle x \in \union_{i \in I_k} A_i$.
-Като свидетел за това можем да вземем множеството $A_y$, където $y \in I_k \cap L$.
+Като свидетел за това можем да вземем множество $A_y$, където $y \in I_k \cap L$.
 
 \quad
 Щом $\displaystyle x \in \union_{i \in I_k} A_i$ за произволно $k \in J$,
-то $\displaystyle x \in \intersection_{j \in J} \union_{i \in L} A_i$.
+то $\displaystyle x \in \intersection_{j \in J} \union_{i \in I_j} A_i$.
 
 \qed
 \end{tcolorbox}

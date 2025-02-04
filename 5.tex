@@ -82,7 +82,7 @@ $y \in \pow(A) \land \neg \exists z\ [y = \{z\}]$.
 \end{tcolorbox}
 
 \quad
-Щом $g$ е инекция и сюрекция, то $g$ е биекция $\Rightarrow$
+Щом $g$ е инекция и сюрекция, то $g$ е биекция, откъдето
 $\size{\pow(A)} = \size{\pow(A) \cup \{\pow(A)\}}$.
 
 \qed
@@ -204,7 +204,7 @@ b \in x_1 \iff f[b \setminus \{c\}] \in z \iff b \in x_2
 
 \begin{tcolorbox}[mybox={Доказателство:}]
 \quad
-Нека $\pair{y, z} \in \pow(\pow(A)) \cup \pow(\pow(A))$. Дефинираме множество първообраз $x$ по следния начин:
+Нека $\pair{y, z} \in \pow(\pow(A)) \times \pow(\pow(A))$. Дефинираме множество първообраз $x$ по следния начин:
 \[
 x = \underbrace{\{f^{-1}[b]\ |\ b \in y\}}_{M} \uplus \underbrace{\{f^{-1}[b] \cup \{c\}\ |\ b \in z\}}_{N}
 \]
@@ -228,14 +228,14 @@ b \in z & \iff f^{-1}[b] \cup \{c\} \in x                         & \text{ // о
 \end{alignat*}
 
 \quad
-Така получихме, че $h(x) = \pair{y, z} \Rightarrow \forall \pair{y, z}\, \exists x\ [h(x) = \pair{y, z}]$.
+Така получихме, че $h(x) = \pair{y, z}$, откъдето $\forall \pair{y, z}\, \exists x\ [h(x) = \pair{y, z}]$.
 
 \qed
 \end{tcolorbox}
 
 \quad
-Щом $h$ е инекция и сюрекция, то $h$ е биекция
-$\Rightarrow \size{\pow(\pow(A))} = \size{\pow(\pow(A)) \times \pow(\pow(A))}$.
+Щом $h$ е инекция и сюрекция, то $h$ е биекция, откъдето
+$\size{\pow(\pow(A))} = \size{\pow(\pow(A)) \times \pow(\pow(A))}$.
 
 \qed
 

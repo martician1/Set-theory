@@ -19,7 +19,7 @@ $(\forall i \in I)(\forall j \in I)(i \neq j \Rightarrow (\forall x \in A_i)(\fo
 представено като сума на $I$-индексирана фамилия $\{A_i\}_{i \in I}$.
 Бинарната релация $\prec$ е дефинирана с равенството:
 \[
-\prec = \{z\ |\ (\exists i \in I)(\exists j \in I)(z = \pair{i, j}) \land (\exists x \in A_i)(\exists x \in A_j)(x < y)\}
+\prec = \{z\ |\ (\exists i \in I)(\exists j \in I)(z = \pair{i, j}) \land (\exists x \in A_i)(\exists y \in A_j)(x < y)\}
 \]
 
 \quad
@@ -133,6 +133,7 @@ $\mathcal{C}$ се нарича \textit{разредено}, ако всеки �
 така че всяко едно от множествата $\pair{A_i, \leq \cap (A_i \times A_i)}$
 е разредено и $\pair{I, \preceq}$ е гъсто, където $\preceq$ е породената от това представяне наредба.
 
+\quad
 Първо нека си дефинираме няколко помощни множества и нотации:
 \[
 \operatorname{interval}(x, y) \coloneq \{z\ |\ z \in A \land (x \le z \le y \lor y \le z \le x)\}
@@ -156,7 +157,7 @@ $\mathcal{C}$ се нарича \textit{разредено}, ако всеки �
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
 Нека $x \in A$. Не е трудно да се съборази, че $\operatorname{interval}(x, x) = \{x\}$,
-откъдето $\operatorname{diluted}(\operatorname{interval}(x, x))$ и $\pair{x, x} \in A$.
+откъдето $\operatorname{diluted}(\operatorname{interval}(x, x))$ и $\pair{x, x} \in \sim$.
 
 \qed
 \end{tcolorbox}
@@ -205,11 +206,11 @@ $a \in \operatorname{interval}(y, z) \subseteq \operatorname{interval}(x, y) \cu
 \quad
 \textbf{Наблюдение 3:}
 \[
-(\forall x \in A) [\operatorname{diluted}(x) \Rightarrow (\forall y \subseteq x) [\operatorname{diluted}(y)]
+(\forall x \subseteq A) [\operatorname{diluted}(x) \Rightarrow (\forall y \subseteq x) [\operatorname{diluted}(y)]
 \]
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
-Нека $x \in A$, $\operatorname{diluted}(x)$, $y \subseteq x$ и нека $a \subseteq y$.
+Нека $x \subseteq A$, $\operatorname{diluted}(x)$, $y \subseteq x$ и нека $a \subseteq y$.
 Тогава $a \subseteq x$, откъдето $\neg \operatorname{dense}(a)$.
 
 \qed
@@ -225,13 +226,13 @@ $a \in \operatorname{interval}(y, z) \subseteq \operatorname{interval}(x, y) \cu
 и $\operatorname{diluted}(\operatorname{interval}(y, z))$.
 Ще докажем, че $\operatorname{diluted}(\operatorname{interval}(x, y) \cup \operatorname{interval}(y, z))$.
 Да допуснем противното.
-Нека вземем $a$ такова, че $a \subseteq interval(x, y) \cup interval(y, z) \land \operatorname{dense}(a)$.
+Нека вземем $a$ такова, че $a \subseteq \operatorname{interval}(x, y) \cup \operatorname{interval}(y, z) \land \operatorname{dense}(a)$.
 Нека БОО\footnote{Лесно може да се съобрази, че всяко гъсто множество има поне 3 елемента,
 откъдето сечението на $a$ с един от интервалите трябва да съдържа поне 2 елемента.}
 $\size{a \cap \operatorname{interval}(x, y)} \ge 2$.
 Тогава от $\operatorname{dense}(a)$ и дефиницията на $\operatorname{interval}$ ще бъде изпълнено:
 \[
-(\forall x \in a \cap \operatorname{interval}(x, y))(\forall y \in a \cap \operatorname{interval}(x, y))(x < y \Rightarrow (\exists z \in a \cap \operatorname{interval}(x, y)\footnote{$z \in a$ от $\operatorname{dense}(a)$, а $z \in \operatorname{interval}(x,y)$ от $(x < y < z)$})(x < z < y))
+(\forall v \in a \cap \operatorname{interval}(x, y))(\forall u \in a \cap \operatorname{interval}(x, y))(v < u \Rightarrow (\exists w \in a \cap \operatorname{interval}(x, y)\footnote{$w \in a$ от $\operatorname{dense}(a)$, а $w \in \operatorname{interval}(x,y)$ (от $x \leq v < w < u \leq y$)})(v < w < u))
 \]
 \quad
 откъдето
@@ -296,11 +297,11 @@ $x' < y$.
 \end{tcolorbox}
 
 \quad
-Ще покажем, че също така $\forall i \in I\ (diluted(A_i))$.
+Ще покажем, че също така $\forall i \in I\ (\operatorname{diluted}(A_i))$.
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
 Да допуснем противното. Нека $i \in I$ и $C \subseteq A_i$ са такива, че $\operatorname{dense}(C)$
-и нека $x$ и $y$ са произволни елементи на $C$.
+и нека $x$ и $y$ са два различни елемента на $C$.
 Тогава $\operatorname{dense}(\operatorname{interval}(x, y) \cap C)$,
 но в същото време $\operatorname{diluted}(\operatorname{interval}(x, y))$ от
 $x, y \in A_i$. Противоречие.
@@ -311,7 +312,8 @@ $x, y \in A_i$. Противоречие.
 Накрая ще покажем, че $\pair{I, \preceq}$ е гъсто.
 \begin{tcolorbox}[mybox, title={Доказателство:}]
 \quad
-Нека $i, j \in I$ са такива, че $i \prec j$ и $i \neq j$ и нека $a$ е произволен елемент на $A_i$ и $b$ е произволен елемент на $A_j$.
+Нека $i, j \in I$ са такива, че $i \prec j$ и $i \neq j$ и нека $a$ е произволен елемент на $A_i$ и $b$ е произволен елемент на $A_j$,
+като БОО нека $a < b$.
 Тъй като $i \neq j$, то $\neg \operatorname{diluted}(\operatorname{interval}(a, b))$, тоест:
 \[
 (\exists C \subseteq \operatorname{interval}(a, b)) (\operatorname{dense}(C))

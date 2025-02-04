@@ -27,7 +27,7 @@ $\pair{A, \leq}$ е изоморфно на собствен начален се
 е добре наредено множество, то всички собствени начални сегменти на $A$ са от вида $seg(x)$ за $x \in A$.}
 Тъй като $\varphi$ е биекция между $A$ и подмножество на $A$, то
 $\varphi$ е инекция между $A$ и $A$, откъдето следва, че $\varphi$ е разширяваща \textit{(expansive)} функция,
-тоест $\forall x \in A\ [x < \varphi(x)]$. В същото време $\varphi(x) \in seg(x)$, тоест $\varphi(x) < x$. Противоречие.
+тоест $\forall x \in A\ [x \leq \varphi(x)]$. В същото време $\varphi(x) \in seg(x)$, тоест $\varphi(x) < x$. Противоречие.
 \end{tcolorbox}
 
 \quad
@@ -57,7 +57,7 @@ f = \{\pair{b, a}\ |\ \pair{b, a} \in B \times A \land
 \[
 \forall b \in \operatorname{Dom}(f) \, \exists! a \in A
 \ [
-\pair{seg_B(b), \leq \cap (seg_B(b) \times seg_B(b))} \cong \pair{seg_A(a), \leq \cap (seg_A(a) \times seg_A(a))}\}
+\pair{seg_B(b), \leq \cap (seg_B(b) \times seg_B(b))} \cong \pair{seg_A(a), \leq \cap (seg_A(a) \times seg_A(a))}
 ]
 \]
 \quad
@@ -115,10 +115,10 @@ $\operatorname{Dom}(f) = B \land \operatorname{Rng}(f) = seg_A(a)$ за $a \in A
 \item
 $\operatorname{Dom}(f) = seg_B(b) \land \operatorname{Rng}(f) = A$ за $b \in B$.
 Тогава $f^{-1}$ е запазваща наредбата инекция между $A$ и $A$, което влече, че $f^{-1}$ е разширяваща
-тоест $\forall x \in A\ [x < f^{-1}(x)]$. В същото време $f^{-1}(b) \in seg_B(b)$, тоест $f^{-1}(b) < b$. Противоречие.
+тоест $\forall x \in A\ [x \leq f^{-1}(x)]$. В същото време $f^{-1}(b) \in seg_B(b)$, тоест $f^{-1}(b) < b$. Противоречие.
 
 \item
-$\operatorname{Dom}(f) = seg_B(b) \land \operatorname{Rng}(f) = seg_A(a)$ за $a \in A, b \in B$.
+$\operatorname{Dom}(f) = seg_B(b) \land \operatorname{Rng}(f) = seg_A(a)$ за $a \in A$ и $b \in B$.
 Тогава $f$ е изоморфизъм между
 $\pair{seg_B(b), \leq \cap (seg_B(b) \times seg_B(b))}$ и
 $\pair{seg_A(a), \leq \cap (seg_A(a) \times seg_A(a))}$,
